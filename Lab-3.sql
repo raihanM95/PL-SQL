@@ -11,21 +11,22 @@ else
 	PRINT 'He is from different department'
 
 if(SELECT MAX(Salary) FROM Employees) < 60000
-	BEGIN
-		PRINT 'Salary is not enough'
-	END
-else
-	BEGIN
-		if(SELECT MAX(Salary) FROM Employees) < 9000
-		BEGIN
-			UPDATE Employees SET Salary = Salary + Salary *.5
-		END
+BEGIN
+	PRINT 'Salary is not enough'
+END
 
-		else
-		BEGIN
-			PRINT'Salary is more than enough'
-		END
+else
+BEGIN
+	if(SELECT MAX(Salary) FROM Employees) < 9000
+	BEGIN
+		UPDATE Employees SET Salary = Salary + Salary *.5
 	END
+
+	else
+	BEGIN
+		PRINT'Salary is more than enough'
+	END
+END
 
 --Find employee salary--
 --If average selery > 60 update salary 15% decryment--

@@ -15,6 +15,9 @@ CREATE TABLE test1000(
 	Id int
 )
 
+CREATE TABLE testTrg(
+	Id int
+)
 
 --ii)Drop
 CREATE TRIGGER Tr_for_tableS
@@ -29,6 +32,8 @@ END
 --if execute a query then show sms--
 DROP TABLE test1000
 
+DROP TABLE testTrg
+
 
 
 
@@ -40,7 +45,7 @@ CREATE TABLE BackUp_for_Student(
 	Value nvarchar(3500)
 )
 
-ALTER TRIGGER Tr_for_insert_STD
+CREATE TRIGGER Tr_for_insert_STD
 ON Student
 FOR Insert
 AS
@@ -53,7 +58,7 @@ INSERT INTO BackUp_for_Student VALUES(
 )
 END
 SELECT* FROM Student
-INSERT INTO Student VALUES ('167-35-152', 'Raihan', 'Sylhet', 35)
+INSERT INTO Student VALUES ('172-35-152', 'Raihan', 'Sylhet', 35)
 
 SELECT* FROM BackUp_for_Student
 
@@ -71,10 +76,11 @@ BEGIN
 DECLARE @i varchar(35)
 SELECT @i = S_ID FROM Deleted
 INSERT INTO BackUp_for_Student VALUES(
-'New insert data is' + @i + 'He is insert at' + CAST(GETDATE() AS varchar(35))
+'Delete data is' + @i + 'He is delete at' + CAST(GETDATE() AS varchar(35))
 )
 END
+
 SELECT* FROM Student
-INSERT INTO Student VALUES ('167-35-152', 'Raihan', 'Sylhet', 35)
+DELETE FROM Student WHERE S_ID = '169-35-1542'
 
 SELECT* FROM BackUp_for_Student
